@@ -3,11 +3,16 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/App/App";
 import PrimeraClase from "./components/PrimeraClase/PrimeraClase";
+import Deportes from "./components/Deportes/Deportes";
 import reportWebVitals from "./reportWebVitals";
+import Numeros from "./components/Numeros/Numeros";
+import Comics from "./components/Comics/Comics";
 
 ReactDOM.render(
   <React.StrictMode>
-    <PrimeraClase />
+    {/* <Deportes /> */}
+    {/* <Numeros /> */}
+    <Comics />
   </React.StrictMode>,
   document.getElementById("root")
 );
