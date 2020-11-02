@@ -49,9 +49,65 @@ class Comics extends Component {
       favorito: comic,
     });
   };
+  crearComic = () => {
+    var titulo = document.getElementById("cajaTitulo").value;
+    var imagen = document.getElementById("cajaImagen").value;
+    var descripcion = document.getElementById("cajaDescripcion").value;
+    var nuevoComic = {
+      titulo: titulo,
+      imagen: imagen,
+      descripcion: descripcion,
+    };
+
+    var comics = this.state.comics;
+    comics.push(nuevoComic);
+    this.setState({
+      comics: comics,
+    });
+  };
+  eliminarComic = (index) => {
+    //Queremos eliminar un comic entre muchos de un array
+    //Array.splice(indice, elemento a eliminar)
+    //recuperamos el array
+    var comics = this.state.comics;
+    comics.splice(index, 1);
+    this.setState({
+      comics: comics,
+    });
+  };
+  actualizarComic = (index) => {
+    var titulo = document.getElementById("cajaTitulo").value;
+    var imagen = document.getElementById("cajaImagen").value;
+    var descripcion = document.getElementById("cajaDescripcion").value;
+    var comics = this.state.comics;
+    var comicActualizado = comics[index];
+    comicActualizado.titulo = titulo;
+    comicActualizado.imagen = imagen;
+    comicActualizado.descripcion = descripcion;
+    this.setState({
+      comics: comics,
+    });
+  };
   render() {
     return (
       <div>
+        <div>
+          <label> Titulo: </label>
+          <input type="text" id="cajaTitulo"></input>
+          <br />
+
+          <label> Imagen: </label>
+          <input type="text" id="cajaImagen"></input>
+          <br />
+        </div>
+        <label> Descripcion: </label>
+        <input type="text" id="cajaDescripcion"></input>
+        <br />
+        <button type="button" onClick={this.crearComic}>
+          Crear Comic
+        </button>
+        <br />
+
         {this.state.favorito && (
           <React.Fragment>
             <h1 style={{ color: "brown" }}>
@@ -64,11 +120,22 @@ class Comics extends Component {
 
         {this.state.comics.map((comic, index) => {
           return (
-            <Comic
-              comic={comic}
-              key={index}
-              metodoSeleccionarComic={this.seleccionarComic}
-            />
+            <React.Fragment key={index}>
+              <Comic
+                comic={comic}
+                indiceComic={index}
+                metodoSeleccionarComic={this.seleccionarComic}
+                metodoEliminarComic={this.eliminarComic}
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  this.actualizarComic(index);
+                }}
+              >
+                Modificar Comic
+              </button>
+            </React.Fragment>
           );
         })}
         {/*Para hacer alguna condicion la sintaxis es:

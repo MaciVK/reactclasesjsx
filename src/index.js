@@ -7,12 +7,15 @@ import Deportes from "./components/Deportes/Deportes";
 import reportWebVitals from "./reportWebVitals";
 import Numeros from "./components/Numeros/Numeros";
 import Comics from "./components/Comics/Comics";
-
+import EjemploSimple from "./components/Formularios/EjemploSimple";
+import Collatz from "./components/Formularios/Collatz";
 ReactDOM.render(
   <React.StrictMode>
     {/* <Deportes /> */}
     {/* <Numeros /> */}
-    <Comics />
+    {/* <App /> */}
+    {/* <EjemploSimple /> */}
+    <Collatz />
   </React.StrictMode>,
   document.getElementById("root")
 );
