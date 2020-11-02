@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ElementoListaCollatz from "./ElementoListaCollatz";
 
 export default class Collatz extends Component {
   numero = React.createRef();
@@ -8,13 +9,9 @@ export default class Collatz extends Component {
   };
   descomponer = (event) => {
     event.preventDefault();
-    this.setState({
-      descomposicion: null,
-    });
-    var array = this.state.descomposicion;
+    var array = [];
     array.push(parseInt(this.numero.current.value));
     while (array[array.length - 1] >= 1) {
-      console.log(array[array.length - 1]);
       if (array[array.length - 1] % 2 == 0) {
         var nuevonumero = array[array.length - 1] / 2;
         array.push(nuevonumero);
@@ -38,11 +35,12 @@ export default class Collatz extends Component {
           <label htmlFor="numero">Escribe un numero: </label>
           <input name="numero" type="text" ref={this.numero} />
           <button>Descomponer</button>
-          {this.state.descomposicion && (
-            <h1 style={{ backgroundColor: "blueviolet", color: "white" }}>
-              {this.state.descomposicion.toString()}
-            </h1>
-          )}
+
+          <ul>
+            {this.state.descomposicion.map((valor, index) => {
+              return <ElementoListaCollatz numero={valor} key={index} />;
+            })}
+          </ul>
         </form>
       </div>
     );
