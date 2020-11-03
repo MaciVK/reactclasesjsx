@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ElementoListaCollatz from "./ElementoListaCollatz";
 
 export default class Collatz extends Component {
   numero = React.createRef();
@@ -38,7 +37,7 @@ export default class Collatz extends Component {
 
           <ul>
             {this.state.descomposicion.map((valor, index) => {
-              return <ElementoListaCollatz numero={valor} key={index} />;
+              return <li key={index}>{valor}</li>;
             })}
           </ul>
         </form>
